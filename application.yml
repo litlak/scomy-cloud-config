@@ -1,0 +1,32 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://client:ps123456@eureka.ms.${msenv.msrdomain}/eureka/
+#开启健康检查
+  healthcheck: 
+    enabled: false
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    health-check-url-path: /actuator/health
+    status-page-url-path: /actuator/info
+    #租期更新时间间隔（默认30秒）
+    lease-renewal-interval-in-seconds: 10
+    #租期到期时间（默认90秒）
+    lease-expiration-duration-in-seconds: 10
+    metadata:
+      management:
+        context-path: /actuator
+    metadata-map:
+      version: 1.0
+
+spring:
+#服务跟踪
+  sleuth:
+    sampler:
+      probability: 0.5 # 将采样比例设置为 1.0，也就是全部都需要。默认是 0.1
+  zipkin:
+    enabled: true
+    sender:
+      type: web
+    base-url: "http://${msenv.msrhost}/zipkin/"
