@@ -1,7 +1,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://client:ps123456@eureka.ms.${msenv.msrdomain}/eureka/
+      defaultZone: http://client:a1234566@localhost:37001/
 #开启健康检查
   healthcheck: 
     enabled: false
@@ -29,4 +29,4 @@ spring:
     enabled: true
     sender:
       type: web
-    base-url: "http://${msenv.msrhost}/zipkin/"
+#    base-url: "http://${msenv.msrhost}/zipkin/"
