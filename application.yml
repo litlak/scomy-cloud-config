@@ -1,7 +1,9 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://client:a1234566@localhost:37001/
+      defaultZone: http://localhost:37001/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
 #开启健康检查
   healthcheck: 
     enabled: false
