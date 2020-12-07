@@ -32,3 +32,9 @@ spring:
     sender:
       type: web
 #    base-url: "http://${msenv.msrhost}/zipkin/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
