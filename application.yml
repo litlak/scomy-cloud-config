@@ -6,7 +6,7 @@ eureka:
     fetchRegistry: true
 #开启健康检查
   healthcheck: 
-    enabled: false
+    enabled: true
   instance:
     preferIpAddress: true
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
@@ -22,19 +22,22 @@ eureka:
     metadata-map:
       version: 1.0
 
-spring:
-#服务跟踪
-  sleuth:
-    sampler:
-      probability: 0.5 # 将采样比例设置为 1.0，也就是全部都需要。默认是 0.1
-  zipkin:
-    enabled: true
-    sender:
-      type: web
-#    base-url: "http://${msenv.msrhost}/zipkin/"
+info:
+  app:
+    name: '@project.name@'
+    description: '@project.description@'
+    version: '@project.version@'
+    encoding: '@project.build.sourceEncoding@'
+    java:
+      version: '@java.version@'
 
 management:
   endpoints:
     web:
       exposure:
-        include: refresh
+        include: refresh,info
+
+logging:
+  level:
+    com.netflix.discovery: 'INFO'
+    org.springframework.cloud: 'INFO'
